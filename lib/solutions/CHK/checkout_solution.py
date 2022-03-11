@@ -5,7 +5,7 @@ from collections import Counter
 def checkout(skus: str) -> int:
 
     price_table = {
-        'A': [50, (3,130)], 
+        'A': [50, (3,-20)], 
         'B': [30, (2,45)],
         'C': 20,
         'D': 15}
@@ -26,6 +26,7 @@ def checkout(skus: str) -> int:
             total_price += price_table[item] * basket[item]
 
     return int(total_price)
+
 
 
 
