@@ -34,7 +34,7 @@ def checkout(skus: str) -> int:
         'Z': (21, False)
     }
 
-    discount_group = 'STXYZ' 
+    discount_group = 'ZYSTX' 
 
     special_discounts = {
         'A': [(3, 20), (5, 50)],
@@ -117,6 +117,7 @@ def calculate_discount(item, basket, special_discounts, price_table):
     offer_total += calculate_price(price_table[item][0], basket[item])
 
     return offer_total
+
 
 
 
