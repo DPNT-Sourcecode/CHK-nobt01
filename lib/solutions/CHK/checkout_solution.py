@@ -37,7 +37,3 @@ def calculate_special_offers(item, basket, price_table):
     
 
 
-
-
-
-
