@@ -21,13 +21,15 @@ def checkout(skus: str) -> int:
             price, special_offer = price_table[item]
             count, offer_price = special_offer
             total_price += offer_price * (basket[item] / count)
+            print((basket[item] / count))
             total_price += price * (basket[item] % count)
         else:
             total_price += price * basket[item]
 
     print(int(total_price))
 
-checkout('AAABCDBC')
+checkout('A')
+
 
 
 
