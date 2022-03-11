@@ -62,7 +62,9 @@ def checkout(skus: str) -> int:
 
     for group_item in discount_group:
         if group_item in basket:
-            discount_group = discount_group.get(group_item, 0) + 1
+            applied_group_discount[group_item] = applied_group_discount.get(group_item, 0) + basket[group_item]
+
+    print(applied_group_discount)
         
 
     for item in basket:
@@ -117,6 +119,9 @@ def calculate_discount(item, basket, special_discounts, price_table):
     offer_total += calculate_price(price_table[item][0], basket[item])
 
     return offer_total
+
+checkout('STSTSTSTS')
+
 
 
 
