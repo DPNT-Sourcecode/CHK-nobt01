@@ -122,8 +122,3 @@ def calculate_discount(item, basket, special_discounts, price_table):
 checkout('STSTSTSTS')
 
 
-
-
-
-
-
