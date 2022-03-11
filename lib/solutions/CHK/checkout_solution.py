@@ -12,13 +12,23 @@ def checkout(skus: str) -> int:
 
     basket = Counter(skus)
 
+    total_price = 0
+
     for item in basket:
         if item not in price_table:
             return -1
         if isinstance(price_table[item], list):
-            print(price_table[item])
+            price, special_offer = price_table[item]
+            count, offer_price = special_offer
+            total_price += offer_price * (basket[item] / count)
+            total_price += price * (basket[item] % count)
+        else:
+            total_price += price * basket[item]
 
-checkout('ABCDBCF')
+    print(int(total_price))
+
+checkout('AAABCDBC')
+
 
 
 
