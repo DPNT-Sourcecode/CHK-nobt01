@@ -9,7 +9,8 @@ def checkout(skus: str) -> int:
         'B': (30, True),
         'C': (20, False),
         'D': (15, False),
-        'E': (40, True)
+        'E': (40, True),
+        'F': (10, True)
     }
 
     special_discounts = {
@@ -18,7 +19,8 @@ def checkout(skus: str) -> int:
     }
 
     special_giveaways = {
-        'E': [(2, 'B')]
+        'E': [(2, 'B')],
+        'F': [(2, 'F')]
     }
 
     basket = Counter(skus)
@@ -47,13 +49,23 @@ def calculate_with_giveaway(item, basket, special_give_aways, price_table):
     offer_total = 0
     for special_offer in special_give_aways[item]:
         item_pack, giveaway = special_offer
-        special_offer_entry = (basket[item] // item_pack)
-        if giveaway in basket:
-            basket[giveaway] -= special_offer_entry * 1
-            if basket[giveaway] < 0:
-                basket[giveaway] = 0
-        offer_total += calculate_price(price_table[item][0], basket[item])
-        basket[item] -= special_offer_entry * item_pack
+        if giveaway == item:
+            if basket[item] > 2:
+                special_offer_entry = (basket[item] // item_pack)
+                if giveaway in basket:
+                    basket[giveaway] -= special_offer_entry * 1
+                    if basket[giveaway] < 0:
+                        basket[giveaway] = 0
+                offer_total += calculate_price(price_table[item][0], basket[item])
+                basket[item] -= special_offer_entry * item_pack
+        else:       
+            special_offer_entry = (basket[item] // item_pack)
+            if giveaway in basket:
+                basket[giveaway] -= special_offer_entry * 1
+                if basket[giveaway] < 0:
+                    basket[giveaway] = 0
+            offer_total += calculate_price(price_table[item][0], basket[item])
+            basket[item] -= special_offer_entry * item_pack
 
     return offer_total
 
@@ -75,6 +87,9 @@ def calculate_discount(item, basket, special_discounts, price_table):
     offer_total += calculate_price(price_table[item][0], basket[item])
 
     return offer_total
+
+print(checkout('FFFF'))
+
 
 
 
