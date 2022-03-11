@@ -46,8 +46,8 @@ def calculate_with_giveaway(item, basket, special_give_aways, price_table):
         special_offer_entry = (basket[item] // item_pack)
         if giveaway in basket:
             basket[giveaway] -= special_offer_entry * 1
-            offer_total += calculate_price(price_table[item][0], basket[item])
-            basket[item] -= special_offer_entry * item_pack
+        offer_total += calculate_price(price_table[item][0], basket[item])
+        basket[item] -= special_offer_entry * item_pack
 
     return offer_total
 
@@ -69,7 +69,8 @@ def calculate_discount(item, basket, special_discounts, price_table):
     offer_total += calculate_price(price_table[item][0], basket[item])
 
     return offer_total
-        
+
+
 
 
 
