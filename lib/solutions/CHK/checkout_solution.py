@@ -25,10 +25,7 @@ def checkout(skus: str) -> int:
             return -1
         price, any_special_offer = price_table[item]
         if any_special_offer:
-            price, special_offer = price_table[item]
-            count, offer_price = special_offer
-            total_price += offer_price * (basket[item] // count)
-            total_price += price * (basket[item] % count)
+            total_price += calculate_special_offers(item, basket, special_offers, price_table)
         else:
             total_price += calculate_price(price_table[item], basket[item])
 
@@ -45,13 +42,19 @@ def calculate_special_offers(item, basket, special_offers, price_table):
         offer_total -= discount * (basket[item] // item_pack)
         offer_total += calculate_price(price_table[item], (basket[item] % item_pack))
     else:
-        sorted_offers = sorted(special_offers[item], key=lambda tup: tup[1], reverse=True)
-        for special_offer in special_offers:
+        sorted_offers = sorted(special_offers[item], key=lambda tup: tup[0], reverse=True)
+        for special_offer in sorted_offers:
             item_pack, discount = special_offer
-            offer_total += calculate_price(price_table[item], (basket[item] // item_pack))
-            offer_total -= discount * (basket[item] // item_pack)
-            offer_total += calculate_price(price_table[item], (basket[item] % item_pack))
-            #basket[item] -= 
+            special_offer_entry = (basket[item] // item_pack)
+            offer_total += calculate_price(price_table[item], special_offer_entry)
+            offer_total -= discount * (special_offer_entry)
+            basket[item] -= special_offer_entry
+
+        offer_total += calculate_price(price_table[item], basket[item])
+
+    return offer_total
+        
+
 
 
 
