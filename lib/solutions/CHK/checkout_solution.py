@@ -54,10 +54,7 @@ def calculate_special_offers(item, basket, special_offers, price_table):
 
     return offer_total
         
-
-
-
-
+print(checkout('A'))
 
 
 
