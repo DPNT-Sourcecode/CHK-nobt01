@@ -1,4 +1,5 @@
 from collections import Counter
+from tokenize import group
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -15,7 +16,7 @@ def checkout(skus: str) -> int:
         'H': (10, True),
         'I': (35, False),
         'J': (60, False),
-        'K': (80, True),
+        'K': (70, True),
         'L': (90, False),
         'M': (15, False),
         'N': (40, True),
@@ -23,22 +24,23 @@ def checkout(skus: str) -> int:
         'P': (50, True),
         'Q': (30, True),
         'R': (50, True),
-        'S': (30, False),
+        'S': (20, False),
         'T': (20, False),
         'U': (40, True),
         'V': (50, True),
         'W': (20, False),
-        'X': (90, False),
-        'Y': (10, False),
-        'Z': (50, False)
-
+        'X': (17, False),
+        'Y': (20, False),
+        'Z': (21, False)
     }
+
+    discount_group = '' 
 
     special_discounts = {
         'A': [(3, 20), (5, 50)],
         'B': [(2, 15)],
         'H': [(5, 5), (10, 20)],
-        'K': [(2, 10)],
+        'K': [(2, 20)],
         'P': [(5, 50)],
         'Q': [(3, 10)],
         'V': [(2, 10), (3, 20)]
@@ -108,5 +110,6 @@ def calculate_discount(item, basket, special_discounts, price_table):
     offer_total += calculate_price(price_table[item][0], basket[item])
 
     return offer_total
+
 
 
