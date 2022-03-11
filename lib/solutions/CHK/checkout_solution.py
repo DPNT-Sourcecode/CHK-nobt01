@@ -51,7 +51,8 @@ def calculate_special_offers(item, basket, special_offers, price_table):
             offer_total += calculate_price(price_table[item], (basket[item] // item_pack))
             offer_total -= discount * (basket[item] // item_pack)
             offer_total += calculate_price(price_table[item], (basket[item] % item_pack))
-            basket[item] -= 
+            #basket[item] -= 
+
 
 
 
