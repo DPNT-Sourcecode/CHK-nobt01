@@ -9,12 +9,17 @@ def checkout(skus: str) -> int:
         'B': (30, True),
         'C': (20, False),
         'D': (15, False),
-        'E': (40, True)}
+        'E': (40, True)
+    }
 
-    special_offers = {
+    special_discounts = {
         'A': [(3,20), (5,50)],
-        'B': [(2,45)],
-        'E': [(2,'B')]}
+        'B': [(2,45)]
+    }
+
+    special_giveaways = {
+        'E': [(2, 'B')]
+    }
 
     basket = Counter(skus)
 
@@ -25,21 +30,23 @@ def checkout(skus: str) -> int:
             return -1
         price, any_special_offer = price_table[item]
         if any_special_offer:
-            total_price += calculate_discount(item, basket, special_offers, price_table)
+            total_price += calculate_discount(item, basket, special_discounts, price_table)
         else:
-            total_price += calculate_price(price_table[item], basket[item])
+            total_price += calculate_price(price, basket[item])
 
     return int(total_price)
 
-def calculate_giveaway(item, basket, special_offers):
-    pass
+def calculate_giveaway(item, basket, special_give_aways):
+    if any(basket.keys()) in special_give_aways:
+        pass
+
 
 def calculate_price(price, count):
     return price * count
 
-def calculate_discount(item, basket, special_offers, price_table):
+def calculate_discount(item, basket, special_discounts, price_table):
     offer_total = 0
-    sorted_offers = sorted(special_offers[item], key=lambda tup: tup[0], reverse=True)
+    sorted_offers = sorted(special_discounts[item], key=lambda tup: tup[0], reverse=True)
     for special_offer in sorted_offers:
         item_pack, discount = special_offer
         special_offer_entry = (basket[item] // item_pack)
@@ -52,6 +59,7 @@ def calculate_discount(item, basket, special_offers, price_table):
     return offer_total
         
 print(checkout('AAAAAEE'))
+
 
 
 
