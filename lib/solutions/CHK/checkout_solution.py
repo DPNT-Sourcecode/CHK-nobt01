@@ -14,7 +14,7 @@ def checkout(skus: str) -> int:
     special_offers = {
         'A': [(3,20), (5,50)],
         'B': [(2,45)],
-        'E': [(2,30)]}
+        'E': [(2,'B')]}
 
     basket = Counter(skus)
 
@@ -25,16 +25,19 @@ def checkout(skus: str) -> int:
             return -1
         price, any_special_offer = price_table[item]
         if any_special_offer:
-            total_price += calculate_special_offers(item, basket, special_offers, price_table)
+            total_price += calculate_discount(item, basket, special_offers, price_table)
         else:
             total_price += calculate_price(price_table[item], basket[item])
 
     return int(total_price)
 
+def calculate_giveaway(item, basket, special_offers):
+    pass
+
 def calculate_price(price, count):
     return price * count
 
-def calculate_special_offers(item, basket, special_offers, price_table):
+def calculate_discount(item, basket, special_offers, price_table):
     offer_total = 0
     sorted_offers = sorted(special_offers[item], key=lambda tup: tup[0], reverse=True)
     for special_offer in sorted_offers:
@@ -49,6 +52,7 @@ def calculate_special_offers(item, basket, special_offers, price_table):
     return offer_total
         
 print(checkout('AAAAAEE'))
+
 
 
 
