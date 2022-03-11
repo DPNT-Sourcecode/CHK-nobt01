@@ -72,6 +72,8 @@ def calculate_discount(item, basket, special_discounts, price_table):
 
     return offer_total
 
+print(checkout('EEEE'))
+
 
 
 
