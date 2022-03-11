@@ -35,6 +35,8 @@ def checkout(skus: str) -> int:
     }
 
     discount_group = 'ZYSTX' 
+    group_price = 45
+    group_count = 3
 
     special_discounts = {
         'A': [(3, 20), (5, 50)],
@@ -58,13 +60,13 @@ def checkout(skus: str) -> int:
 
     total_price = 0
 
-    applicable_list = list()
+    remainer_items = list()
 
     for group_item in discount_group:
         if group_item in basket:
-            applicable_list.append([group_item, basket[group_item]])
-        
-    print(applicable_list)
+
+            total_price += (basket[group_item] // group_count) * group_price
+            basket[group_item] = basket[group_item] % group_count
 
     for item in basket:
         if item not in price_table:
@@ -120,5 +122,6 @@ def calculate_discount(item, basket, special_discounts, price_table):
     return offer_total
 
 checkout('STSTSTSTS')
+
 
 
