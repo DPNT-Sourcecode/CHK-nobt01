@@ -5,7 +5,7 @@ from collections import Counter
 def checkout(skus: str) -> int:
 
     price_table = {
-        'A': [50, (3,150)], 
+        'A': [50, (3,130)], 
         'B': [30, (2,45)],
         'C': 20,
         'D': 10}
@@ -20,17 +20,10 @@ def checkout(skus: str) -> int:
         if isinstance(price_table[item], list):
             price, special_offer = price_table[item]
             count, offer_price = special_offer
-            total_price += offer_price * (basket[item] / count)
-            print((basket[item] / count))
+            total_price += offer_price * (basket[item] // count)
             total_price += price * (basket[item] % count)
         else:
             total_price += price * basket[item]
 
-    print(int(total_price))
-
-checkout('A')
-
-
-
-
+    return int(total_price)
 
