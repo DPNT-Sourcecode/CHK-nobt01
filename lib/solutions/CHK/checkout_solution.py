@@ -38,9 +38,11 @@ def calculate_special_offers(item, basket, special_offers, price_table):
     offer_total = 0
     sorted_offers = sorted(special_offers[item], key=lambda tup: tup[0], reverse=True)
     for special_offer in sorted_offers:
+        print(special_offer)
         item_pack, discount = special_offer
         special_offer_entry = (basket[item] // item_pack)
         offer_total += calculate_price(price_table[item][0], special_offer_entry)
+        print(offer_total)
         offer_total -= discount * (special_offer_entry)
         basket[item] -= special_offer_entry
 
@@ -48,7 +50,8 @@ def calculate_special_offers(item, basket, special_offers, price_table):
 
     return offer_total
         
-print(checkout('B'))
+print(checkout('AAAAA'))
+
 
 
 
