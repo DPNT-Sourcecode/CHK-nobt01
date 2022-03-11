@@ -14,7 +14,7 @@ def checkout(skus: str) -> int:
 
     special_discounts = {
         'A': [(3,20), (5,50)],
-        'B': [(2,45)]
+        'B': [(2,15)]
     }
 
     special_giveaways = {
@@ -31,7 +31,7 @@ def checkout(skus: str) -> int:
         price, any_special_offer = price_table[item]
         if any_special_offer:
             if item in special_giveaways:
-                basket = drop_giveaway(item, basket, special_giveaways)
+                drop_giveaway(item, basket, special_giveaways)
             if item in special_discounts:
                 total_price += calculate_discount(item, basket, special_discounts, price_table)
         else:
@@ -41,11 +41,12 @@ def checkout(skus: str) -> int:
 
 def drop_giveaway(item, basket, special_give_aways):
     for special_offer in special_give_aways[item]:
+        print(special_offer)
         item_pack, giveaway = special_offer
         special_offer_entry = (basket[item] // item_pack)
         basket[giveaway] -= special_offer_entry * 1
+    print('here')
 
-    return basket
 
 
 def calculate_price(price, count):
@@ -65,7 +66,8 @@ def calculate_discount(item, basket, special_discounts, price_table):
 
     return offer_total
         
-print(checkout('AAAAAB'))
+print(checkout('AAAAAE'))
+
 
 
 
