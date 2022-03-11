@@ -10,17 +10,31 @@ def checkout(skus: str) -> int:
         'C': (20, False),
         'D': (15, False),
         'E': (40, True),
-        'F': (10, True)
+        'F': (10, True),
+        'G': (20, False),
+        'H': (10, True),
+        'I': (35, False),
+        'J': (60, False),
+        'K': (80, True),
+        'L': (90, False),
+        'M': (15, False),
+        'N': (40, True),
+        'O': (10, False),
+        'P': (50, True)
     }
 
     special_discounts = {
-        'A': [(3,20), (5,50)],
-        'B': [(2,15)]
+        'A': [(3, 20), (5, 50)],
+        'B': [(2, 15)],
+        'H': [(5, 5), (10, 20)],
+        'K': [(2, 10)],
+        'P': [(5, 50)]
     }
 
     special_giveaways = {
         'E': [(2, 'B')],
-        'F': [(3, 'F')]
+        'F': [(3, 'F')],
+        'N': [(3, 'M')]
     }
 
     basket = Counter(skus)
@@ -79,6 +93,7 @@ def calculate_discount(item, basket, special_discounts, price_table):
     offer_total += calculate_price(price_table[item][0], basket[item])
 
     return offer_total
+
 
 
 
