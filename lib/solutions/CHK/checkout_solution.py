@@ -8,7 +8,7 @@ def checkout(skus: str) -> int:
         'A': [50, (3,130)], 
         'B': [30, (2,45)],
         'C': 20,
-        'D': 10}
+        'D': 15}
 
     basket = Counter(skus)
 
@@ -26,6 +26,7 @@ def checkout(skus: str) -> int:
             total_price += price_table[item] * basket[item]
 
     return int(total_price)
+
 
 
 
