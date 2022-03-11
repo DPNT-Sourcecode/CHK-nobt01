@@ -23,7 +23,9 @@ def checkout(skus: str) -> int:
             total_price += offer_price * (basket[item] // count)
             total_price += price * (basket[item] % count)
         else:
-            total_price += price * basket[item]
+            total_price += price_table[item] * basket[item]
 
     return int(total_price)
+
+
 
