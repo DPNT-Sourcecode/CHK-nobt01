@@ -14,6 +14,7 @@ from runner.user_input_action import get_user_input
 
 """
   ~~~~~~~~~~ Running the system: ~~~~~~~~~~~~~
+ 
     From IDE:
        Run this file from the IDE.
  
@@ -30,7 +31,7 @@ from runner.user_input_action import get_user_input
          * You are presented with your current progress and a list of actions.
          * You trigger one of the actions by typing it on the console.
          * After the action feedback is presented, the execution will stop.
-
+ 
     +------+-----------------------------------------------------------------------+
     | Step | The usual workflow                                                    |
     +------+-----------------------------------------------------------------------+
